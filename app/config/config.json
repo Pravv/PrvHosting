@@ -1,0 +1,14 @@
+{
+  "filesDir": "Q:/FILESTEST/",
+  "database": {
+    "name": "yuikoo.db",
+    "dir": "Q:/sqlite3TOOLS/",
+    "driver": "sqlite3",
+    "maxConn": 150
+  },
+  "server": {
+    "port": "1234",
+    "logLevel": "DEBUG",
+    "profiler": true
+  }
+}
