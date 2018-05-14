@@ -26,3 +26,4 @@
  - [ ] Konta użytkowników
  - [X] Skracanie linków
  - [ ] Interface dla skracacza linków
+
