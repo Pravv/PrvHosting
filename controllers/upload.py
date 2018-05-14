@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request, current_app
-from models import utils
+from flask import request
+from models import upload
 
 
-def upload():
+def handle_upload():
     if request.method == 'POST' and 'files' in request.files:
         file = request.files['files']
 
-        print(utils.calculateHash(file.read()).hexdigest())
+        return upload.process_file(file, request)
 
     return str(request.files['files'])

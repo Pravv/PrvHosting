@@ -3,6 +3,7 @@ from hashlib import sha1
 import string
 import random
 from .database import find
+from flask import jsonify
 
 
 def split_name_from_extension(filename: str):
@@ -17,7 +18,7 @@ def generate_url(length: int):
     failedGenerations = 0
     while True:
         url = ''.join(random.choice(string.ascii_letters + string.digits + '+_') for _ in range(length))
-        if not find("url"):
+        if find("file_url", url) is None:
             return url
 
         if failedGenerations > 1000:
@@ -29,6 +30,16 @@ def generate_url(length: int):
 
 def calculate_hash(file):
     return sha1(file)
+
+
+def failure_to_json():
+    return jsonify(success=False, files=[{}])
+
+
+def record_to_json(fileRecord, url):
+    return jsonify(success=True,
+                   files=[{"name": fileRecord.realName, "extension": fileRecord.extension,
+                           "url": url + fileRecord.url + "." + fileRecord.extension}])
 
 
 class Test_split_name_from_extension(unittest.TestCase):
