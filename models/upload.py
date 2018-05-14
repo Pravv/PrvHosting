@@ -17,7 +17,7 @@ def process_file(file, request):
 
     hash = utils.calculate_hash(fileData).hexdigest()
 
-    record = database.find("file_url", hash)
+    record = database.find("file_hash", hash)
     if record is not None:
         return utils.record_to_json(file_record.File.from_DB(record), request.host_url)
 
