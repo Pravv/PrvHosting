@@ -25,3 +25,4 @@
  - [X] Wparcie dla [Sharex](https://getsharex.com/)
  - [ ] Konta użytkowników
  - [X] Skracanie linków
+ - [ ] Interface dla skracacza linków
