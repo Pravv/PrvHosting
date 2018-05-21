@@ -1,5 +1,4 @@
-from flask import Flask, redirect, request
-from models import utils
+from flask import redirect, request
 from models import short_url
 
 

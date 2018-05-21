@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, redirect
 from models import upload
 
 
@@ -8,4 +8,4 @@ def handle_upload():
 
         return upload.process_file(file, request)
 
-    return str(request.files['files'])
+    return redirect(request.host_url, code=302)

@@ -11,6 +11,7 @@
 
 ## Użyte biblioteki
 - [flask](https://github.com/pallets/flask)
+- [PyMySQL](https://github.com/PyMySQL/PyMySQL)
 
 ## Sposób wykonania
  - Pliki są przechowywane na dysku
@@ -18,12 +19,3 @@
  - W bazie danych znajduje nazwa pliku, jego oryginalna nazwa, typ i checksum wygenerowany z pliku.
  - Bazując na checksumie, identyczne kopie pliku nie będą oddzielnie zapisywane, a uploadującemu zostanie odesłany link do już istniejącej pliku.
  
-## TODO
- - [X] Upload jednym kliknięciem
- - [X] Minimalistyczny interface
- - [X] Drag & Drop
- - [X] Wparcie dla [Sharex](https://getsharex.com/)
- - [ ] Konta użytkowników
- - [X] Skracanie linków
- - [ ] Interface dla skracacza linków
-
