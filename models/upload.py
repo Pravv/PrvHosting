@@ -12,7 +12,7 @@ def save_on_disk(filename, fileData):
     return True
 
 
-def process_file(file, request, userID):
+def process_file(file, request):
     fileData = file.read()
 
     hash = utils.calculate_hash(fileData).hexdigest()
@@ -30,7 +30,7 @@ def process_file(file, request, userID):
     fileName, extension = utils.split_name_from_extension(file.filename)
     fileRecord = file_record.File(hash, fileName, extension, url)
 
-    result = database.add_file(fileRecord, userID)
+    result = database.add_file(fileRecord)
     if result is None:
         return utils.failure_to_json()
 
