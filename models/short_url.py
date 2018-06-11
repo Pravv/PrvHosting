@@ -3,7 +3,7 @@ from models import database
 from flask import jsonify
 
 
-def process_url(url, request):
+def process_url(url, request, userID):
     hash = utils.calculate_hash(url.encode()).hexdigest()
 
     record = database.find("url_hash", hash)
@@ -12,7 +12,7 @@ def process_url(url, request):
 
     short = utils.generate_url(3)
 
-    result = database.add_short(short, url, hash)
+    result = database.add_short(short, url, hash, userID)
     if result is None:
         return utils.failure_to_json()
 

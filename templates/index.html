@@ -4,14 +4,32 @@
     <meta charset="UTF-8">
     <meta name="maxUploadSize" content="250">
     <title>PrvHosting</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/prvhosting.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='styles/favicon.png') }}">
 </head>
 <body>
+<div id="header-div" class="clearfix with-margins">
+    <div class="pull-left"><a href="/"><h1 class="no-margins">PrvHosting</h1></a></div>
+    <div class="pull-right">
+
+        <a href="/user/sign-in">Login</a>
+        &nbsp; | &nbsp;
+        <a href="/user/sign-out">Sign out</a>
+
+    </div>
+</div>
+<hr class="no-margins"/>
+
 <main>
     <div class="hero">
         <h1>PrvHosting</h1>
-        <p>PrvHosting</p>
+
+        <p id="input-container"><input placeholder="Your original URL here">
+            <button onclick="shortUrl()">Shorten URL<span><span></span></span></button>
+        </p>
+        <p id="result-url"></p>
     </div>
     <div class="button outline" id="upload">Click here or drag and drop files</div>
     <p class="upload-caption">Max upload size per file is 250 MB</p>
@@ -45,19 +63,37 @@
         </div>
     </div>
 </main>
+
 <footer>
     <nav class="menu">
         <ul>
             <li>
-                <a href="/">Login</a>
+                <a href={{ url_for('user.login') }}>Login</a>
             </li>
             <li>
-                <a href="/">Register</a>
+                <a href={{ url_for('user.register') }}>Register</a>
+            </li>
+            <li>
+                <a href={{ url_for('user.logout') }}>Sign out</a>
             </li>
         </ul>
     </nav>
 </footer>
 <script src="{{ url_for('static', filename='js/dropzone.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+<script>
+    function shortUrl() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(JSON.parse(this.responseText));
+                document.getElementById("result-url").innerHTML = "<a href='" + JSON.parse(this.responseText).url[0].short + "'>" + JSON.parse(this.responseText).url[0].short + "</a>";
+            }
+        };
+        console.log("short?url=" + document.getElementById("input-container").firstChild.value);
+        xhttp.open("GET", "short?url=" + document.getElementById("input-container").firstChild.value, true);
+        xhttp.send();
+    }
+</script>
 </body>
 </html>

@@ -65,8 +65,6 @@ def serve_file(filename):
 
 
 @app.route('/upload', methods=['POST'])
-
-
 def upload_file():
     userID = 0
     if current_user.is_authenticated:

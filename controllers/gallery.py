@@ -1,21 +1,5 @@
-from models import utils, database, file_record, gallery
+from models import utils, database, file_record
 from flask import send_file, render_template, redirect, render_template_string
-
-
-def make_tree(path):
-    tree = dict(name=path, children=[])
-    try:
-        lst = os.listdir(path)
-    except OSError:
-        pass  # ignore errors
-    else:
-        for name in lst:
-            fn = os.path.join(path, name)
-            if os.path.isdir(fn):
-                tree['children'].append(make_tree(fn))
-            else:
-                tree['children'].append(dict(name=fn))
-    return tree
 
 
 def show(request, user):
